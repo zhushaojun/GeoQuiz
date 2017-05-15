@@ -1,5 +1,6 @@
 package cn.edu.zjhu.zhushaojun.geoquiz;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -14,6 +15,7 @@ public class QuizActivity extends AppCompatActivity {
     private Button mTrueButton;
     private Button mFalseButton;
     private Button mNextButton;
+    private Button mCheatButton;
     private TextView mQuestionTextView;
 
     private Question[] mQuestionBank = new Question[]{
@@ -77,6 +79,17 @@ public class QuizActivity extends AppCompatActivity {
                 updateQuestion();
             }
         });
+
+        mCheatButton = (Button) findViewById(R.id.cheat_button);
+        mCheatButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start CheatActivity
+                Intent i = new Intent(QuizActivity.this, CheatActivity.class);
+                startActivity(i);
+            }
+        });
+
         if (savedInstanceState != null) {
             mCurrentIndex = savedInstanceState.getInt(KEY_INDEX, 0);
         }
